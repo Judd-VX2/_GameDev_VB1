@@ -47,7 +47,7 @@ Material:
     - _FoamSpeed: 0.5
     - _GlossyReflections: 1
     - _Mettalic: 0.755
-    - _NormalMapWavesSpeed: 0.1
+    - _NormalMapWavesSpeed: 0.118
     - _NormalMapsWavesSize: 6.14
     - _SMOOTHNESS: 1
     - _SmallWavesSize: 1
@@ -77,3 +77,4 @@ Material:
     - _Shallowcolor: {r: 0.4890531, g: 0.6480994, b: 0.6603774, a: 0}
     - _deepcolor: {r: 0.3301887, g: 0.1712053, b: 0.07631721, a: 0}
     - _foamcolor: {r: 0.3066038, g: 1, b: 0.9145772, a: 0}
+  m_BuildTextureStacks: []
