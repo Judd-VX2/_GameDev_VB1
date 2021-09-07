@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tankcodecontrol1 : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public float speed = 10.0f;
     public float turnSpeed;
@@ -17,6 +17,6 @@ public class tankcodecontrol1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.forward + speed +Time.deltaTime);
+        Transform.Translate(Vector3.forward + speed +Time.deltaTime);
     }
 }
