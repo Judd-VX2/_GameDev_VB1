@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-  public float speed = 10.0f;
+  public float speed = 100.0f;
   public float turnSpeed;
   // Left and right input
   public float hInput; 
@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
   {
     // Getting button press values for Horizontal and vertical Inputs 
     hInput = Input.GetAxis("Horizontal");
-    vInput = Input.GetAxis("vertical");
+    vInput = Input.GetAxis("Vertical");
 
    // Makes the vehicle go left and right 
    transform.Rotate(Vector3.up, turnSpeed * hInput * Time.deltaTime);

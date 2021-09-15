@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class camerafollow : MonoBehaviour
+public class Camerafollow : MonoBehaviour
 {
-    public camerafollow tank;
+    public GameObject tank;
 
-    private Vector3 Offset = new Vector3(0,25,-50);
+    private Vector3 offset = new Vector3(0,25,-170);
 
    
     // Update is called once per frame
