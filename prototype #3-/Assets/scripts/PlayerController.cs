@@ -17,31 +17,33 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
 
     void Awake()
-     {
+   {
        //Get the components
        cam = Camera.main;
        rb = GetComponent<Rigidbody>();
-     }
+    }
     // Update is called once per frame
     void Update()
-    {
-        Move();
-        CamLook();
-    }
+   { 
+       Move();
+       CamLook();
+       if(Input.GetButtonDown("Jump"));
+         Jump();
+   }
+
     void Move()
-    { 
-      // Get Keyboard input with move speed
-      float x = Input.GetAxis("Horizontal") * moveSpeed;
-      float z = Input.GetAxis("Vertical") * moveSpeed;
-      // Applying movement to the rigid body
-      Vector3 dir = transform.right * X + transform.foward * z;
-      // Jump direction 
-      dir = rb.velocity.y;
-      // Apply direction to camera movement
-      rb.velocity = dir;
+    {   // Get Keyboard input with move speed
+        float x = Input.GetAxis("Horizontal") * moveSpeed;
+        float z = Input.GetAxis("Vertical") * moveSpeed;
+        // Applying movement to the rigidbody
+        Vector3 dir = transform.right * x + transform.forward * z;
+        // Jump direction 
+        dir.y = rb.velocity.y;
+        // Apply direction to camera movement
+        rb.velocity = dir;
     }
 
-    void jump()
+    void Jump()
     {
       // Cast ray to ground 
       Ray ray = new Ray(transform.position, Vector3.down);
