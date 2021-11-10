@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using System.LIng;
+using System.Linq;
 
 public class Enemy : MonoBehaviour
 {
@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
 
     private List<Vector3> path;
 
-    private Weapons weapon;
+    private Weapon weapon;
     private GameObject target;
 
     private Rigidbody rb;
@@ -33,8 +33,8 @@ public class Enemy : MonoBehaviour
         curHP = maxHP;
 
         // Gather the Compnents 
-        weapon = GetComponent<Weapons>();
-        target = FindObjectType<playerController>().gameObject;
+        weapon = GetComponent<Weapon>();
+        target = FindObjectOfType<PlayerController>().gameObject;
         rb = GetComponent<Rigidbody>();
 
         InvokeRepeating("UpdatePath", 0.0f, 0.5f);
@@ -45,10 +45,10 @@ public class Enemy : MonoBehaviour
     {
         // Calculate a path to the target
         NavMeshPath navmeshPath = new NavMeshPath();
-        NavMeshPath.Calculatepath(transform.position, transform.position. NaveMesh.AllAreas, naveMeshPath );
+        NavMesh.Calculatepath(transform.position, transform.position, NavMesh.AllAreas, navMeshPath);
 
         // Save path to a list 
-        path = navMeshPath.corners.TOList();
+        path = navMeshPath.corners.ToList();
     }
         
         void ChaseTarget()
@@ -83,8 +83,8 @@ public class Enemy : MonoBehaviour
         void Update()
         {
             // Look at target 
-            Vector3 dir = (target.transform.position - transform.position)normalized;
-            float angle = Mathf.Atan2(dir.x, dir.z) * MathfRad2Deg;
+            Vector3 dir = (target.transform.position - transform.position).normalized;
+            float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
 
             transform.eulerAngles = Vector3.up * angle;
 
