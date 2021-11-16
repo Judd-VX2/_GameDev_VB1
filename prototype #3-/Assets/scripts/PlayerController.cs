@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //Movement
-    public float moveSpeed; // How fast the player moves
+    [Header("Movement")]
+    public float moveSpeed; 
     public float jumpForce;
     //Camera 
     public float lookSensitivity; // Mouse movement sesitivity
@@ -78,3 +78,28 @@ private Weapon weapon;
        transform.eulerAngles += Vector3.up * y; 
     }
 }
+
+
+
+
+
+
+public void TakeDamage(int damage)
+{
+    curHP -= damage;
+
+    if( curHP <= 0)
+    die()
+
+}
+void die()
+{
+    print("You have DEATHED");
+}
+
+public void GiveHealth(int amountToGive)
+{
+    curHP = Mathf.Clamp(curHP + amountToGive, 0, maxHP);
+}
+
+public void Giveammo
