@@ -12,14 +12,38 @@ public class Bullet : MonoBehaviour
 
     void OnEnable()
     {
-       shootTime
+       shootTime = Time.time;
+    }
+    // Start is called before the first frame update 
+    void Start()
+    {
+
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        // Create the hit particle effect 
+        GameObject obj = Instantiate(hitPartical, transform.position, Quaternion.identity);
+        //Destroy Hit Particle
+        Destroy(obj, 0.5f);
+
+        //Did we hit the target aka player 
+        if(other.CompareTag("player"))
+            other.GetComponent<PlayerController>().TakeDamage(damage);
+         else 
+           if(other.CompareTag("Enemy"))
+               other.GetComponent<Enemy>().TakeDamage(damage)
+
+
+        //Disable Bullet
+        gameObject.SetActive(false)
+
+
     }
 
-
-
-    // Update is called once per frame
+   // Update is called once per frame
     void Update()
     {
-        
+        if(Time.time - shootTime >= lifetime)
+        gameobject.SetActive(false);
     }
 }

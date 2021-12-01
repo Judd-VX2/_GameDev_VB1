@@ -11,7 +11,7 @@ public class ObjectPool : MonoBehaviour
     // Store all of the pooled game objects (Projectiles)
     private List<GameObject> pooledObjs = new List<GameObject>();
 
-    // Start is called before the first frame ubdate 
+    // Start is called before the first frame update 
     void Start()
     {
         for(int x = 0; x < createOnStart; x++)
