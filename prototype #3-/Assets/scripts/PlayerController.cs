@@ -7,11 +7,11 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed; 
     public float jumpForce;
-    //Camera 
-    public float lookSensitivity; // Mouse movement sesitivity
-    public float maxLookX; // Lowest down we can look
-    public float minLookX; // Highest you can look
-    private float rotX; // Current x rotation of the camera 
+    [Header ("Camera")]
+    public float lookSensitivity; // Mouse look sensitivity 
+    public float maxLookX; //lowest down position we can look
+    public float minLookX; //Highest up we can look
+    private float rotX; //Current X rotation of the camera 
     //Components
     private Camera cam;
     private Rigidbody rb;
