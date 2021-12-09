@@ -45,11 +45,4 @@ public class ObjectPool : MonoBehaviour
 
         return obj;
     }
-
-
-    // update is called once per frame 
-    void Update()
-    {
-
-    }
-}
+{

@@ -14,11 +14,7 @@ public class Bullet : MonoBehaviour
     {
        shootTime = Time.time;
     }
-    // Start is called before the first frame update 
-    void Start()
-    {
-
-    }
+    
     void OnTriggerEnter(Collider other)
     {
         // Create the hit particle effect 
