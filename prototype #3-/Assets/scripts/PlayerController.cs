@@ -8,23 +8,40 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed; 
     public float jumpForce;
     [Header ("Camera")]
-    public float lookSensitivity; // Mouse look sensitivity 
+    public float lookSensitivity;  // Mouse look sensitivity 
     public float maxLookX; //lowest down position we can look
     public float minLookX; //Highest up we can look
     private float rotX; //Current X rotation of the camera 
-    //Components
+    [Header("GameObjects & Components")] // GameObjects & Components 
     private Camera cam;
     private Rigidbody rb;
+    private Weapon weapon;
 
-private Weapon weapon;
+    [Header("Stats")]
+    public int curHP;
+    public int maxHP;
+
 
     void Awake()
    {
        //Get the components
        cam = Camera.main;
        rb = GetComponent<Rigidbody>();
-
        weapon = GetComponent<Weapon>();
+       // Disable cursor
+       Cursor.lockstate = CursorLockMode.Locked;
+    }
+
+    public void TakeDamage(int damage)
+    {
+       curHP -= damage;
+
+       if(curHP <= 0)
+           Die();
+    }
+    void Die()
+    {
+
     }
 
     // Update is called once per frame
@@ -32,78 +49,58 @@ private Weapon weapon;
    { 
        Move();
        CamLook();
-       // Jump Button
+       // Jump when spacebar is pressed
        if(Input.GetButtonDown("Jump"));
          Jump();
-         //Fire Button
+         
          if(Input.GetButton("fire"))
          {
              if(weapon.CanShoot())
-             weapon.Shoot();
+             {
+               weapon.Shoot(); 
+             }
          }
-
-   }
+      }
 
     void Move()
-    {   // Get Keyboard input with move speed
+    {   
         float x = Input.GetAxis("Horizontal") * moveSpeed;
         float z = Input.GetAxis("Vertical") * moveSpeed;
-        // Applying movement to the rigidbody
+
+        //Face the direction of the camera
         Vector3 dir = transform.right * x + transform.forward * z;
         // Jump direction 
         dir.y = rb.velocity.y;
-        // Apply direction to camera movement
+        // Move in the direction of the camera
         rb.velocity = dir;
     }
 
     void Jump()
     {
-      // Cast ray to ground 
       Ray ray = new Ray(transform.position, Vector3.down);
-      // Check Ray lenghth to jump
       if(Physics.Raycast(ray, 1.1f))
+      {
           rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+      }      
     }
+
     void CamLook()
     {
-      // Get mouse input so we can look around with mouse 
        float y = Input.GetAxis("Mouse X") * lookSensitivity;
        rotX += Input.GetAxis("Mouse Y") * lookSensitivity;
-
-       // Clamp the vertical rotation of the camera
+       //Clamps the camera up and down rotation 
        rotX = Mathf.Clamp(rotX, minLookX, maxLookX);
-
-       // Applying the rotation to Camera
-       cam.transform.localRotation = Quaternion.Euler(-rotX, 0, 0);
+       // Apply rotation to Camera
+       cam.transform.localRotation = Quaternion.Euler(-rotX, 0,0);
        transform.eulerAngles += Vector3.up * y; 
     }
+    public void GiveHealth (int amountToGive)
+    { 
+      curHP = Mathf.Clamp(curHP + amountToGive, 0, maxHP);
+    }
 
-
-
-
-
-
-
- public void TakeDamage(int damage)
- {
-    curHP -= damage;
-
-    if( curHP <= 0)
-    die()
-
- }
- void die()
- {
-    print("You have DEATHED");
- }
-
- public void GiveHealth(int amountToGive)
- { 
-    curHP = Mathf.Clamp(curHP + amountToGive, 0, maxHP);
- }
-
- public void Giveammo(int amountToGive)
- {
-    weapon.curAmmo = Mathf.Clamp(weapon.curAmmo + amountToGive, 0, weapon.maxAmmo);
- }
+    public void Giveammo(int amountToGive)
+    {
+      weapon.curAmmo = Mathf.Clamp(weapon.curAmmo + amountToGive, 0, weapon.maxAmmo);
+    }
 }
