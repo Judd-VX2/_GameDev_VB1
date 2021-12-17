@@ -24,7 +24,7 @@ public class Pickup : MonoBehaviour
     void start()
     {
       // set the start position
-      startpos = transform.position;
+      startPos = transform.position;
     }
 
     void OnTriggerEnter(Collider other)
@@ -35,12 +35,12 @@ public class Pickup : MonoBehaviour
 
             switch(type)
             {
-                case Pickuptype.Health;
-                    Player.GiveHealth(value);
+                case Pickuptype.Health:
+                    player.GiveHealth(value);
                     break;
 
-                case Pickuptype.Ammo;
-                Player.GiveAmmo(value);
+                case Pickuptype.Ammo:
+                player.GiveAmmo(value);
                 break;
             }
 
@@ -58,7 +58,7 @@ public class Pickup : MonoBehaviour
        Vector3 offset = (bobbingUp == true ? new Vector3(0,bobHeight / 2, 0) : new Vector3(0, -bobHeight /2, 0));
        transform.position = Vector3.MoveTowards(transform.position, startPos + offset, bobSpeed * Time.deltaTime);
 
-       if(transform,position == startPos + offset)
+       if(transform.position == startPos + offset)
            bobbingUp = !bobbingUp;
     }
     

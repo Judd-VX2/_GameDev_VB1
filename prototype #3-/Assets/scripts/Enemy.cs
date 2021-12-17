@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
     {
         // Calculate a path to the target
         NavMeshPath navMeshPath = new NavMeshPath();
-        NavMesh.Calculatepath(transform.position, transform.position, NavMesh.AllAreas, navMeshPath);
+        NavMesh.Calculatepath(transform.position, target.transform.position, NavMesh.AllAreas, navMeshPath);
 
         // Save path as a list 
         path = navMeshPath.corners.ToList();

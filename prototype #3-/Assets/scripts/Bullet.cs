@@ -14,7 +14,11 @@ public class Bullet : MonoBehaviour
     {
        shootTime = Time.time;
     }
-    
+    // Start is called before the first frame update 
+    void start()
+    {
+        
+    }
     void OnTriggerEnter(Collider other)
     {
         // Create the hit particle effect 
@@ -40,6 +44,6 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         if(Time.time - shootTime >= lifetime)
-        gameobject.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

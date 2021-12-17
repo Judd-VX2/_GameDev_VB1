@@ -42,7 +42,7 @@ public class Weapon: MonoBehaviour
     public void Shoot()
     { 
         lastShootTime = Time.time;
-        curAmmo --;
+        curAmmo--;
         
         GameObject bullet = bulletPool.GetObject();
         bullet.transform.position = muzzle.position;
